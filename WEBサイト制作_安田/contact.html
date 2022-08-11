@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <title>Hair salon ○○ - CONTACT</title>
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="splash">
+            <div id="splash-logo">読み込み中</div>
+        </div><!--/splash-->
+            <div class="splashbg"></div><!---画面遷移用-->
+            
+            <div id="container">
+                <header>
+                    <div class="header-wrapper">
+                        <div class="logo"></div>
+                        <h1 class="main-title"><a href="#">Hair salon ○○</a></h1>
+                        <div class="access">
+                            <div class="access">
+                                <a class="reserve" href="https://beauty.hotpepper.jp/">24H WEB予約</a>
+                                <div id="nav-wrapper" class="nav-wrapper">
+                                    <div class="hamburger" id="js-hamburger">
+                                        <span class="hamburger__line hamburger__line--1"></span>
+                                        <span class="hamburger__line hamburger__line--2"></span>
+                                        <span class="hamburger__line hamburger__line--3"></span>
+                                    </div>
+                                    <nav class="sp-nav">
+                                        <ul>
+                                            <li><a href="menshair.html">MENS HAIR</a></li>
+                                            <li><a href="ledieshair.html">LEDIES HAIR</a></li>
+                                            <li><a href="price.html">PRICE</a></li>
+                                            <li><a href="access.html">SALON</a></li>
+                                        </ul>
+                                    </nav>
+                                    <div class="black-bg" id="js-black-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="menu">
+                        <ul>
+                            <li><a href="index.html" class="mouse1">HOME</a></li>
+                            <li><a href="access.html" class="mouse2">ACCESS</a></li>
+                            <li><a href="contact.html" class="mouse3">CONTACT</a></li>
+                        </ul>
+                    </section>
+                </header>
+                <main>
+                    <div class="contact-wrapper">
+                        <h2 class="contact-title">CONTACT</h2>
+                        <form action="#">
+                            <div class="">
+                                <label for="name">お名前</label>
+                                <input type="text" id="name" name="your-name">
+                            </div>
+
+                            <div>
+                                <label for="email">メールアドレス</label>
+                                <input type="email" id="email" name="your-email">
+                            </div>
+
+                            <div>
+                                <label for="message">メッセージ</label>
+                                <textarea id="message" name="your-message"></textarea>
+                            </div>
+
+                            <input type="submit" class="buttun" value="送信">
+                        </form>
+                    </div>
+
+                    <section>
+                        <form id="pulldown">
+                            <select name="select_menu">
+                                <option value="contact.html">CONTACT</option>
+                                <option value="index.html">HOME</option>
+                                <option value="access.html">ACCESS</option>
+                            </select>
+                        </form>
+                    </section>
+                </main>
+                <footer>
+                    <div class="footer-wrapper">
+                        <button type="button" class="back-to-top">
+                            <span class="label">↑</span>
+                        </button>
+                        <p><small>&copy; 2022 Hair salon ○○</small></p>
+                    </div>
+                </footer>
+            </div><!--container-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+             //ハンバーガーメニュー(ナビゲーションメニュー)
+            window.onload = function () {
+                var nav = document.getElementById('nav-wrapper');
+                var hamburger = document.getElementById('js-hamburger');
+                var blackBg = document.getElementById('js-black-bg');
+
+            hamburger.addEventListener('click', function () {
+                nav.classList.toggle('open'); //開く
+            });
+            blackBg.addEventListener('click', function () {
+                nav.classList.remove('open'); //閉じる
+            });
+            };
+
+            //プルダウンメニュー
+            document.getElementById('pulldown').select_menu.onchange = function() {
+                location.href = document.getElementById('pulldown').select_menu.value;
+            }
+
+            //マウスが乗ったとき・離れた時で色が変わる
+            $(function(){
+                //homeボタン
+                $('.mouse1').on('mouseover',function(){   //マウスオーバー
+                    $('.mouse1').css('color','red');    
+                })
+                $('.mouse1').on('mouseout',function(){    //マウスアウト
+                    $('.mouse1').css('color','black');
+                })
+
+                //accessボタン
+                $(".mouse2").on("mouseover",function(){
+                    $(".mouse2").css("color","blue");
+                })
+                $(".mouse2").on("mouseout",function(){
+                    $(".mouse2").css("color","black");
+                })
+
+                //contactボタン
+                $(".mouse3").on("mouseover",function(){
+                    $(".mouse3").css("color","green");
+                })
+                $(".mouse3").on("mouseout",function(){
+                    $(".mouse3").css("color","black");
+                })
+            });
+            
+            //スムーズスクロール
+            $(function (){
+                $('.back-to-top').each(function(){
+                    //htmlかbodyのいずれがスクロール可能な要素かを検出
+                    var el = scrollableElement('html','body');
+
+                    //ボタンにクリックイベントを設定
+                    $(this).on('click',function(event){
+                        event.preventDefault();
+                        $(el).animate({scrollTop:0},250);
+                    });
+                });
+                //scrollTop が利用できる要素を検出する関数
+                function scrollableElement() {
+                    var i,len,el,$el,scrollable;
+                    for (i=0,len=arguments.length;i<len;i++) {
+                        el = arguments[i],
+                        $el = $(el);
+                        if ($el.scrollTop() > 0){
+                            return el;
+                        } else {
+                            $el.scrollTop(1);
+                            scrollable = $el.scrollTop() > 0;
+                            $el.scrollTop(0);
+                            if (scrollable) {
+                                return el;
+                            }
+                        }
+                    }
+                    return [];
+                }
+            });
+
+            //画面遷移 -背景色が伸びる(上から下)-
+            $(window).on('load',function(){
+                $("#splash-logo").delay(1000).fadeOut('slow');//ロゴを1秒でフェードアウトする記述
+            
+                //ここからローディングエリアを1秒でフェードアウトした後に動かしたいJSをまとめる
+                $("#splash").delay(1000).fadeOut('slow',function(){//ローディングエリア（splashエリア）を1.5秒でフェードアウトする
+                
+                    $('body').addClass('appear');//フェードアウト後bodyにappearクラス付与
+            
+                });
+                //ここまでローディングエリア（splashエリア）を1.5秒でフェードアウトした後に動かしたいJSをまとめる
+                
+                //ここから背景が伸びた後に動かしたいJSをまとめたい場合は
+                $('.splashbg').on('animationend', function() {    
+                    //この中に動かしたいJSを記載
+                });
+                //ここまで背景が伸びた後に動かしたいJSをまとめる
+                    
+            });
+        </script>
+    </body>
+</html>
